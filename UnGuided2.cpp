@@ -116,19 +116,14 @@ void displayDescendants(Pohon *node) {
     if (node != NULL) {
         cout << "Descendants of " << node->data << ": ";
         queue<Pohon *> q;
-        q.push(node);
-        q.pop();
+        if (node->left != NULL) q.push(node->left);
+        if (node->right != NULL) q.push(node->right);
         while (!q.empty()) {
             Pohon *temp = q.front();
             q.pop();
-            if (temp->left != NULL) {
-                cout << temp->left->data << " ";
-                q.push(temp->left);
-            }
-            if (temp->right != NULL) {
-                cout << temp->right->data << " ";
-                q.push(temp->right);
-            }
+            cout << temp->data << " ";
+            if (temp->left != NULL) q.push(temp->left);
+            if (temp->right != NULL) q.push(temp->right);
         }
         cout << endl;
     }
